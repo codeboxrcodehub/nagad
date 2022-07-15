@@ -1,0 +1,17 @@
+{
+    "name": "codeboxr/nagad",
+    "description": "Nagad payment gateway",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Codeboxr\\Nagad\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Codeboxr"
+        }
+    ],
+    "minimum-stability": "dev"
+}
