@@ -16,6 +16,9 @@ class NagadServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . "/../config/nagad.php" => config_path("nagad.php")
         ]);
+
+        $this->loadRoutesFrom(__DIR__ . "/routes/nagad_route.php");
+        $this->loadViewsFrom(__DIR__ . '/Views', 'nagad');
     }
 
     /**
