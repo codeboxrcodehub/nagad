@@ -1,6 +1,11 @@
 {
     "name": "codeboxr/nagad",
     "description": "Nagad payment gateway",
+    "keywords": [
+        "nagad",
+        "nagad-payment-gateway",
+        "nagad-payment"
+    ],
     "type": "library",
     "license": "MIT",
     "autoload": {
