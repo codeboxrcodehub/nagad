@@ -1,8 +1,10 @@
 {
     "name": "codeboxr/nagad",
-    "description": "Nagad payment gateway",
+    "description": "Laravel Nagad payment gateway",
     "keywords": [
         "nagad",
+        "laravel-nagad",
+        "laravel-nagad-payment",
         "nagad-payment-gateway",
         "nagad-payment"
     ],
