@@ -110,6 +110,11 @@ class Payment
             ]);
 
             $response = json_decode($response->body());
+
+            if (isset($response->reason)) {
+                throw new NagadException($response->message);
+            }
+
             if ($response->status == "Success") {
                 return redirect($response->callBackUrl);
             }
