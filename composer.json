@@ -1,12 +1,12 @@
 {
     "name": "codeboxr/nagad",
-    "description": "Laravel Nagad payment gateway",
+    "description": "Nagad payment gateway laravel",
     "keywords": [
         "nagad",
-        "laravel-nagad",
-        "laravel-nagad-payment",
         "nagad-payment-gateway",
-        "nagad-payment"
+        "nagad-payment",
+        "laravel-nagad",
+        "laravel-nagad-payment"
     ],
     "type": "library",
     "license": "MIT",
