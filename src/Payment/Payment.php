@@ -116,4 +116,16 @@ class Payment
         }
     }
 
+    /**
+     * @param string $paymentRefId
+     *
+     * @return mixed
+     */
+    public function verify(string $paymentRefId)
+    {
+        $url      = $this->base_url . "verify/payment/{$paymentRefId}";
+        $response = Http::withHeaders($this->headers())->get($url);
+        return json_decode($response->body());
+    }
+
 }
