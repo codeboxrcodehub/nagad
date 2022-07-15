@@ -2,6 +2,7 @@
 
 namespace Codeboxr\Nagad;
 
+use Codeboxr\Nagad\Payment\Payment;
 use Illuminate\Support\ServiceProvider;
 
 class NagadServiceProvider extends ServiceProvider
@@ -29,5 +30,9 @@ class NagadServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . "/../config/nagad.php", "nagad");
+
+        $this->app->bind("payment", function () {
+            return new Payment();
+        });
     }
 }
