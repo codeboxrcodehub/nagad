@@ -21,7 +21,16 @@ php artisan vendor:publish --provider="Codeboxr\Nagad\NagadServiceProvider"
 ```
 
 After publish config file setup your credential. you can see this in your config directory nagad.php file
-
+```
+    "sandbox"         => env("NAGAD_SANDBOX", true), // if true it will redirect to sandbox url
+    "merchant_id"     => env("NAGAD_MERCHANT_ID", ""), 
+    "merchant_number" => env("NAGAD_MERCHANT_NUMBER", ""),
+    "public_key"      => env("NAGAD_PUBLIC_KEY", ""),
+    "private_key"     => env("NAGAD_PRIVATE_KEY", ""),
+    'timezone'        => 'Asia/Dhaka', // By default 
+    "callback_url"    => env("NAGAD_CALLBACK_URL", "http://127.0.0.1:8000/nagad/callback"), // By default you can change it in your callback url
+    "response_type"   => "json" // By default json you can change response type json/html 
+```
 
 ## Usage
 
@@ -30,7 +39,7 @@ After publish config file setup your credential. you can see this in your config
 ```
 use Codeboxr\Nagad\Payment\Payment;
 
-(new Payment)->create(2, "dwAbcd343223wDweg")
+(new Payment)->create(2, "dwAbcd343223wDweg")  // 1st parameter is amount and 2nd is unique invoice number 
 ```
 or
 
