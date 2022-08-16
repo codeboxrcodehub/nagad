@@ -4,14 +4,22 @@ namespace Codeboxr\Nagad\Payment;
 
 use Carbon\Carbon;
 use Codeboxr\Nagad\Traits\Helpers;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\RedirectResponse;
 use Codeboxr\Nagad\Exception\NagadException;
+use Codeboxr\Nagad\Exception\InvalidPublicKey;
+use Codeboxr\Nagad\Exception\InvalidPrivateKey;
+use Illuminate\Contracts\Foundation\Application;
 
 class Payment
 {
     use Helpers;
 
-    public string $base_url;
+    /**
+     * @var string $baseUrl
+     */
+    protected $base_url;
 
     public function __construct()
     {
@@ -25,11 +33,12 @@ class Payment
     private function baseUrl()
     {
         if (config("nagad.sandbox") == true) {
-            $this->base_url = 'http://sandbox.mynagad.com:10080/remote-payment-gateway-1.0/api/dfs/';
+            $this->baseUrl = 'http://sandbox.mynagad.com:10080/remote-payment-gateway-1.0/api/dfs/';
         } else {
-            $this->base_url = 'https://api.mynagad.com/api/dfs/';
+            $this->baseUrl = 'https://api.mynagad.com/api/dfs/';
         }
     }
+
 
     /**
      * Nagad Request Headers
@@ -53,12 +62,12 @@ class Payment
      *
      * @return mixed
      * @throws NagadException
-     * @throws \Codeboxr\Nagad\Exception\InvalidPrivateKey
-     * @throws \Codeboxr\Nagad\Exception\InvalidPublicKey
+     * @throws InvalidPrivateKey
+     * @throws InvalidPublicKey
      */
     private function initPayment($invoice)
     {
-        $baseUrl       = $this->base_url . "check-out/initialize/" . config("nagad.merchant_id") . "/{$invoice}";
+        $baseUrl       = $this->baseUrl . "check-out/initialize/" . config("nagad.merchant_id") . "/{$invoice}";
         $sensitiveData = $this->getSensitiveData($invoice);
         $body          = [
             "accountNumber" => config("nagad.merchant_number"),
@@ -80,21 +89,22 @@ class Payment
     /**
      * Redirect Nagad Payment Checkout Page
      *
-     * @param $amount
-     * @param $invoice
+     * @param float $amount
+     * @param string $invoice
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Redirector
      * @throws NagadException
-     * @throws \Codeboxr\Nagad\Exception\InvalidPrivateKey
-     * @throws \Codeboxr\Nagad\Exception\InvalidPublicKey
+     * @throws InvalidPrivateKey
+     * @throws InvalidPublicKey
      */
+
     public function create($amount, $invoice)
     {
         $initialize = $this->initPayment($invoice);
 
         if ($initialize->sensitiveData && $initialize->signature) {
             $decryptData        = json_decode($this->decryptDataPrivateKey($initialize->sensitiveData));
-            $url                = $this->base_url . "/check-out/complete/" . $decryptData->paymentReferenceId;
+            $url                = $this->baseUrl . "/check-out/complete/" . $decryptData->paymentReferenceId;
             $sensitiveOrderData = [
                 'merchantId'   => config("nagad.merchant_id"),
                 'orderId'      => $invoice,
@@ -103,11 +113,12 @@ class Payment
                 'challenge'    => $decryptData->challenge
             ];
 
-            $response = Http::withHeaders($this->headers())->post($url, [
-                'sensitiveData'       => $this->encryptWithPublicKey(json_encode($sensitiveOrderData)),
-                'signature'           => $this->signatureGenerate(json_encode($sensitiveOrderData)),
-                'merchantCallbackURL' => config("nagad.callback_url"),
-            ]);
+            $response = Http::withHeaders($this->headers())
+                ->post($url, [
+                    'sensitiveData'       => $this->encryptWithPublicKey(json_encode($sensitiveOrderData)),
+                    'signature'           => $this->signatureGenerate(json_encode($sensitiveOrderData)),
+                    'merchantCallbackURL' => config("nagad.callback_url"),
+                ]);
 
             $response = json_decode($response->body());
 
@@ -122,13 +133,15 @@ class Payment
     }
 
     /**
+     * Verify Payment
+     *
      * @param string $paymentRefId
      *
      * @return mixed
      */
     public function verify(string $paymentRefId)
     {
-        $url      = $this->base_url . "verify/payment/{$paymentRefId}";
+        $url      = $this->baseUrl . "verify/payment/{$paymentRefId}";
         $response = Http::withHeaders($this->headers())->get($url);
         return json_decode($response->body());
     }

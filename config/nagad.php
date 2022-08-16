@@ -14,10 +14,10 @@ return [
       |--------------------------------------------------------------------------
       |
       | This option controls the nagad callback url
-      | By default, it will redirect to "http://127.0.0.1:8000/nagad/callback/nagad/callback"
+      | By default, it will redirect to "http://your_domain/nagad/callback"
       | you may change this url any time.
       */
-    "callback_url"    => env("NAGAD_CALLBACK_URL", "http://127.0.0.1:8000/nagad/callback"),
+    "callback_url"    => env("NAGAD_CALLBACK_URL", "/nagad/callback"),
 
     /*
       |--------------------------------------------------------------------------
@@ -31,5 +31,5 @@ return [
       | Supported: "json", "html",
       |
       */
-    "response_type"   => "json" // response type json/html
+    "response_type"   => "html" // response type json/html
 ];

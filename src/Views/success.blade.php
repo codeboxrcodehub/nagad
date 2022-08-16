@@ -109,7 +109,7 @@
     </div>
     <div id='lower-side'>
         <p id='message'>
-            Your Payment Successfully Complete.
+            Your Payment Successfully Complete. Transaction ID {{ $transId }}
         </p>
         <a href="/" id="contBtn">Continue</a>
     </div>
