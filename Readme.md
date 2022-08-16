@@ -1,4 +1,3 @@
-# This package is under development, not recommended to use it production
 
 # Nagad payment gateway for laravel
 
