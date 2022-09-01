@@ -94,7 +94,7 @@ use Codeboxr\Nagad\Facade\NagadRefund;
 NagadRefund::refund($paymentRefId,$refundAmount);
 ```
 
-<span style="color: #96d0ff">Note: For refund method you have to pass two more parameter one is <b>reference no</b> and other
+<span style="color: #96d0ff">Note: For the refund method, you have to pass two more parameters one is <b>reference no</b> and another
 <b>reference message</b></span>
 
 ## Contributing
