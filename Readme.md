@@ -1,4 +1,4 @@
-# Nagad payment gateway for laravel
+# Nagad Payment Gateway for Laravel Framework/PHP project
 
 [![Downloads](https://img.shields.io/packagist/dt/codeboxr/nagad)](https://packagist.org/packages/codeboxr/nagad)
 [![Starts](https://img.shields.io/packagist/stars/codeboxr/nagad)](https://packagist.org/packages/codeboxr/nagad)
