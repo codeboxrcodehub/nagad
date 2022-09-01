@@ -3,10 +3,17 @@
 [![Downloads](https://img.shields.io/packagist/dt/codeboxr/nagad)](https://packagist.org/packages/codeboxr/nagad)
 [![Starts](https://img.shields.io/packagist/stars/codeboxr/nagad)](https://packagist.org/packages/codeboxr/nagad)
 
+## Features
+
+1. [Create Payment/Take to Payment Page](https://github.com/codeboxrcodehub/nagad/edit/main/Readme.md#1-create-payment)
+2. [Verify Payment/Query Payment/Payment Details](https://github.com/codeboxrcodehub/nagad#2-verify-payment)
+3. [Refund Payment](https://github.com/codeboxrcodehub/nagad#3-refund-payment)
+
 ## Requirements
 
 - PHP >=7.4
 - Laravel >= 6
+
 
 ## Installation
 
