@@ -118,5 +118,4 @@ request.
 
 This repository is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
-Copyright 2022 [Codeboxr](https://codeboxr.com)
-We are not not affiliated with Nagad and don't give any guarantee. 
+Copyright 2022 [Codeboxr](https://codeboxr.com). We are not not affiliated with Nagad and don't give any guarantee. 
