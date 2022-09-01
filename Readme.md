@@ -5,6 +5,8 @@
 
 ## Features
 
+This is a php/laravel wrapper package for [Nagad MFS](https://nagad.com.bd/)
+
 1. [Create Payment/Take to Payment Page](https://github.com/codeboxrcodehub/nagad/edit/main/Readme.md#1-create-payment)
 2. [Verify Payment/Query Payment/Payment Details](https://github.com/codeboxrcodehub/nagad#2-verify-payment)
 3. [Refund Payment](https://github.com/codeboxrcodehub/nagad#3-refund-payment)
@@ -106,14 +108,15 @@ NagadRefund::refund($paymentRefId,$refundAmount);
 
 ## Contributing
 
-Contributions to the Nagad package are welcome. Please note the following guidelines before submitting your pull
+Contributions to the Nagad Payment Gateway package are welcome. Please note the following guidelines before submitting your pull
 request.
 
 - Follow [PSR-4](http://www.php-fig.org/psr/psr-4/) coding standards.
-- Read Nagad API documentations first
+- Read Nagad API documentations first. Please contact with Nagad for their api documentation and sandbox access.
 
 ## License
 
-Nagad is licensed under the [MIT License](http://opensource.org/licenses/MIT).
+This repository is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
 Copyright 2022 [Codeboxr](https://codeboxr.com)
+We are not not affiliated with Nagad and don't give any guarantee. 
