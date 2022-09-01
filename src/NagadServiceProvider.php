@@ -2,6 +2,7 @@
 
 namespace Codeboxr\Nagad;
 
+use Codeboxr\Nagad\Payment\Refund;
 use Codeboxr\Nagad\Payment\Payment;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,6 +34,10 @@ class NagadServiceProvider extends ServiceProvider
 
         $this->app->bind("payment", function () {
             return new Payment();
+        });
+
+        $this->app->bind("refundPayment", function () {
+            return new Refund();
         });
     }
 }
