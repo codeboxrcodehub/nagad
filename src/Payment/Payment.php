@@ -45,18 +45,18 @@ class Payment extends BaseApi
         return $response;
     }
 
+
     /**
-     * Redirect Nagad Payment Checkout Page
+     * Create payment
      *
      * @param float $amount
      * @param string $invoice
      *
-     * @return Application|RedirectResponse|Redirector
-     * @throws NagadException
+     * @return mixed
      * @throws InvalidPrivateKey
      * @throws InvalidPublicKey
+     * @throws NagadException
      */
-
     public function create($amount, $invoice)
     {
         $initialize = $this->initPayment($invoice);
@@ -85,9 +85,15 @@ class Payment extends BaseApi
                 throw new NagadException($response->message);
             }
 
-            if ($response->status == "Success") {
-                return redirect($response->callBackUrl);
-            }
+            return $response;
+        }
+    }
+
+    public function executePayment($amount, $invoice)
+    {
+        $response = $this->create($amount, $invoice);
+        if ($response->status == "Success") {
+            return redirect($response->callBackUrl);
         }
     }
 
